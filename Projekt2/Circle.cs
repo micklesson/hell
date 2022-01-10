@@ -7,20 +7,21 @@ namespace Projekt2
     public class Circle : IShape
     {
         private int perimeter;
-        Coordinate center;
+        X_Y_PointScore center;
 
-        public Circle(Coordinate center, int _perimeter)
+        public Circle(double x, double y, double _perimeter)
         {
-            this.center = center;
+            X_Y_PointScore temp = new X_Y_PointScore(x,y,0);
+            center = temp;
             perimeter = _perimeter;
         }
         public double GetRadius()
         {
             return perimeter / (2 * Math.PI);
         }
-        public double GetDistance(Coordinate c)
+        public double GetDistance(X_Y_PointScore point)
         {
-            return Math.Sqrt(Math.Pow(c.X - center.X, 2) + Math.Pow(c.Y - center.Y, 2));
+            return Math.Sqrt(Math.Pow(point.X - center.X, 2) + Math.Pow(point.Y - center.Y, 2));
         }
         public double GetArea()
         {
@@ -28,9 +29,9 @@ namespace Projekt2
             return radius * radius * Math.PI;
         }
 
-        public bool IsInside(Coordinate c)
+        public bool IsInside(X_Y_PointScore point)
         {
-            return GetDistance(c) <= GetRadius();
+            return GetDistance(point) <= GetRadius();
         }
     }
 }
